@@ -6,6 +6,7 @@
 .pnp.js
 
 key.js
+.env
 
 # testing
 /coverage
