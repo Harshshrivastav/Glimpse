@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
-const {JWT_SECRET} = require("../key")
 const requireLogin = require("../middleware/requireLogin")
 
 
@@ -79,7 +78,7 @@ router.post("/signin", (req, res) => {
                     if (doMatch) {
                         // res.json({ message: "sucessfully signed in" })
                         // instead of sending response directly we will send jwt token to user so that he can access authenticated resources with the help of it.
-                        const token = jwt.sign({_id:savedUser._id},JWT_SECRET);
+                        const token = jwt.sign({_id:savedUser._id}, process.env.JWT_SECRET);
                         res.json({token})
                     }
                     else{

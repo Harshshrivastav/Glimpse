@@ -1,8 +1,9 @@
+require("dotenv").config();
+
 const express = require('express');
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT||5000;
 const mongoose = require('mongoose');
-const { MONGOURI } = require('./key');
 const path = require('path');
 
 // Other middleware and configurations (e.g., body-parser, cors, etc.)
@@ -13,7 +14,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // connect to mongoDB Data base
 
 // if connected print connection message
-mongoose.connect(MONGOURI)
+mongoose.connect(process.env.MONGO_URL)
 mongoose.connection.on('connected',()=>{
     console.log('connected to mongo');
 });
